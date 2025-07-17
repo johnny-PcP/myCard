@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Styled Word List</title>
+    <!-- 載入bs5 css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/css/bootstrap.min.css"
+      integrity="sha512-fw7f+TcMjTb7bpbLJZlP8g2Y4XcCyFZW8uy8HsRZsH/SwbMw0plKHFHr99DN3l04VsYNwvzicUX/6qurvIxbxw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+
+      .box {
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        padding: 15px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .box:hover {
+        transform: scale(1.05);
+      }
+
+      .word-id {
+        font-weight: bold;
+        color: #6c757d;
+        margin-bottom: 5px;
+        text-align: right;
+      }
+
+      .word {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #343a40;
+        margin-bottom: 5px;
+        text-align: right;
+      }
+
+      .ipa {
+        font-style: italic;
+        color: #495057;
+        margin-bottom: 5px;
+        text-align: right;
+      }
+
+      .meaning-zh {
+        color: #28a745;
+        margin-bottom: 5px;
+        text-align: right;
+      }
+
+      .example-en {
+        color: #007bff;
+        margin-bottom: 5px;
+        text-align: right;
+      }
+
+      .example-zh {
+        color: #ffc107;
+        margin-bottom: 5px;
+        text-align: right;
+      }
+
+      hr {
+        border-top: 1px solid #dee2e6;
+        margin-top: 10px;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+        transition: clip-path 0.3s ease-in-out;
+        margin-bottom: 10px;
+      }
+
+      .box:hover img {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+
+      .text-container {
+        position: relative;
+        z-index: 1;
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container py-5">
+      <h1 class="text-center mb-4">Word List</h1>
+      <div class="row my-row">
+        <!-- Dynamic content will be appended here -->
+      </div>
+    </div>
+
+    <!-- 載入bs5 js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.bundle.min.js"
+      integrity="sha512-Tc0i+vRogmX4NN7tuLbQfBxa8JkfUSAxSFVzmU31nVdHyiHElPPy2cWfFacmCJKw0VqovrzKhdd2TSTMdAxp2g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- 載入jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="./data/data.js"></script>
+    <script>
+      $(document).ready(function () {
+        // 1.bind
+        const myRow = $(".my-row");
+
+        // 2.action
+
+        console.log("data", data);
+        data.forEach(function (value, key) {
+          console.log("key", key);
+          console.log("value", value);
+
+          let tmpText = `
+                <div class="col-12 col-sm-4 mt-3">
+                    <div class="box">
+                        <img src="https://picsum.photos/300/200/?random=${key}" alt="Random Image">
+                        <div class="text-container">
+                            <p class="word-id">ID: ${value.id}</p>
+                            <p class="word">Word: ${value.word}</p>
+                            <p class="ipa">IPA: ${value.ipa}</p>
+                            <p class="meaning-zh">Meaning (ZH): ${value.meaning_zh}</p>
+                            <p class="example-en">Example (EN): ${value.example_en}</p>
+                            <p class="example-zh">Example (ZH): ${value.example_zh}</p>
+                        </div>
+                        <hr>
+                    </div>
+                 </div>
+                `;
+          myRow.append(tmpText);
+        });
+      });
+    </script>
+  </body>
+</html>
